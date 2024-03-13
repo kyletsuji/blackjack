@@ -1,0 +1,42 @@
+html {
+  text-align: center;
+  background-color: forestgreen;
+}
+.wrapper{
+  margin: auto;
+  width: fit-content;
+}
+button {
+  height: 50px;
+  width: fit-content;
+  padding:10px 30px 10px;
+  font-size: 110%;
+  border-radius: 10px
+}
+.wrapper {
+  text-align: center;
+}
+.card {
+  background-color: white;
+  border-radius: 4%;
+  height: 100%;
+  width: 125px;
+}
+.cards {
+  display: flex;
+  gap: 15px;
+}
+.back {
+  height: 182px;
+  width: 125px;
+}
+#button-container {
+  position: absolute;
+  right: 450px;
+  bottom: 80px;
+}
+#next-hand-button {
+  position: absolute;
+  left: 450px;
+  bottom: 80px;
+}
