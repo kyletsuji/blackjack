@@ -3,6 +3,7 @@
   <head>
     <title>Blackjack</title>
     <link rel="stylesheet" href="mystyles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
     <div class="layout">
@@ -16,11 +17,15 @@
         <div class="cards" id="player"></div>
       </div>
       <br>
-        <div class="container" id="button-container">
+      <div class="container" id="all-buttons-container">
+        <div class="button-container">
           <button id="hit-button">Hit</button>
-          <button id="pass-button">Stand</button>
+          <button id="pass-button" onclick="toggle_buttons('pass-button')">Stand</button>
         </div>
-      <button id="next-hand-button">Deal Next Hand</button>
+        <div class="deal-container">
+          <button id="next-hand-button" onclick="toggle_buttons('next-hand-button')">Deal Next Hand</button>
+        </div>
+      </div>
     <script src="myscript.js"></script>
   </body>
 </html>

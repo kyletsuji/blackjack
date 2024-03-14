@@ -114,6 +114,7 @@ function hitPlayer() {
   PLAYER.append(newCardModel);
   if (calculate(playerHand) > 21) {
     setTimeout(() => { alert("BUST, YOU LOSE"); }, 1000);
+    setTimeout(() => {toggle_buttons('pass-button'); }, 1000);
   }
 }
 
@@ -154,6 +155,21 @@ function getOutcome() {
 function clearBoard() {
   PLAYER.innerHTML = '';
   DEALER.innerHTML = '';
+}
+
+function toggle_buttons(containerId) {
+  const hit_stand = document.querySelector('.button-container');
+  const deal_next = document.querySelector('.deal-container');
+  hit_stand.classList.toggle("hidden");
+  deal_next.classList.toggle("hidden");
+  if (containerId === 'pass-button') {
+    hit_stand.classList.add("hidden");
+    deal_next.classList.remove("hidden");
+  }
+  else if (containerId === 'next-hand-button') {
+    hit_stand.classList.remove("hidden");
+    deal_next.classList.add("hidden");
+  }
 }
 
 createDeck();

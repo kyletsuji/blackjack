@@ -30,13 +30,25 @@ button {
   height: 182px;
   width: 125px;
 }
-#button-container {
+.button-container {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+#hit-button {
+  margin-right: 10px;
+} 
+.hidden {
+  display: none;
+}
+/* #button-container {
   position: absolute;
   right: 450px;
   bottom: 80px;
-}
-#next-hand-button {
+} */
+/* #next-hand-button {
   position: absolute;
   left: 450px;
   bottom: 80px;
-}
+} */
+
+/* media screen */
