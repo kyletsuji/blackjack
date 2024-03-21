@@ -7,24 +7,26 @@
   </head>
   <body>
     <div class="layout">
-      <h2>Dealer hand</h2>
+      <h2 id="dealer-header">Dealer hand</h2>
       <div class="wrapper">
         <div class="cards" id="dealer"></div> 
       </div>
       <br>
-      <h2>Player hand</h2>
+      <h2 id="player-header">Player hand</h2>
       <div class="wrapper">
         <div class="cards" id="player"></div>
       </div>
-      <br>
-      <div class="container" id="all-buttons-container">
-        <div class="button-container">
-          <button id="hit-button">Hit</button>
-          <button id="pass-button" onclick="toggle_buttons('pass-button')">Stand</button>
-        </div>
-        <div class="deal-container">
-          <button id="next-hand-button" onclick="toggle_buttons('next-hand-button')">Deal Next Hand</button>
-        </div>
+      <div class="bank">
+        <label for="bet" id="bet-label">Place your bet</label>
+        <input type="number" id="bet" min="0" max="50" value="20" step="10"/>
+        <p id="amount"></p>
+      </div>
+      <div id="button-container">
+        <button id="hit-button">Hit</button>
+        <button id="pass-button">Stand</button>
+      </div>
+      <div id="deal-container">
+        <button id="next-hand-button" onclick="checkBet()">Deal</button>
       </div>
     </div>
     <script src="myscript.js"></script>

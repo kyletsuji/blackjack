@@ -2,6 +2,9 @@ let deck = [];
 let dealerHand = [];
 let playerHand = [];
 let count = 0;
+let dollars = 100;
+let bet = 0;
+let proceed = true;
 
 // const CARD_MODEL = document.createElement('div');
 // CARD_MODEL.classList.add('card');
@@ -53,6 +56,9 @@ function createDeck() {
 }
 
 function shuffle() {
+  if (!proceed) {
+    return;
+  }
   let current = deck.length-1, random;
   while (current >= 0) {
     random = Math.floor(Math.random() * current);
@@ -62,6 +68,12 @@ function shuffle() {
 }
 
 function dealCards() {
+  if (!proceed) {
+    return;
+  }
+  bet = document.querySelector('#bet');
+  document.getElementById("bet").style.display = "none";
+  document.getElementById("bet-label").style.display = "none";
   dealerHand = [deck[count++], deck[count++]];
   dealerHand.forEach((item, index) => {
     const newCardModel = IMG_MODEL.cloneNode(true);
@@ -80,6 +92,11 @@ function dealCards() {
     newCardModel.src = "cards/" + item.getVal() + ".png";
     PLAYER.append(newCardModel);
   });
+  document.getElementById("next-hand-button").style.display = "none";
+  document.getElementById("player-header").style.display = 'block';
+  document.getElementById("dealer-header").style.display = 'block';
+  document.getElementById("hit-button").style.display = 'block';
+  document.getElementById("pass-button").style.display = 'block';
 }
 
 function calculate(hand) {
@@ -113,8 +130,16 @@ function hitPlayer() {
   newCardModel.src = "cards/" + newCard.getVal() + ".png";
   PLAYER.append(newCardModel);
   if (calculate(playerHand) > 21) {
-    setTimeout(() => { alert("BUST, YOU LOSE"); }, 1000);
-    setTimeout(() => {toggle_buttons('pass-button'); }, 1000);
+    document.getElementById("hit-button").style.display = "none";
+    document.getElementById("pass-button").style.display = "none";
+    setTimeout(() => { 
+      alert("BUST, YOU LOSE");
+      document.getElementById("next-hand-button").style.display = "block"; 
+      dollars = dollars - bet.value;
+      updateBank();
+      document.getElementById("bet").style.display = "block";
+      document.getElementById("bet-label").style.display = "flex";
+    }, 1000);
   }
 }
 
@@ -133,49 +158,79 @@ function hitDealer() {
     }, 1000);
   } 
   else if (calculate(dealerHand) > 21) {
-    setTimeout(() => { alert("DEALER BUST, YOU WIN!"); }, 1000);
+    setTimeout(() => { 
+      alert("DEALER BUST, YOU WIN!"); 
+      document.getElementById("next-hand-button").style.display = "block";
+      dollars = dollars + parseInt(bet.value);
+      updateBank();
+      document.getElementById("bet").style.display = "block";
+      document.getElementById("bet-label").style.display = "flex";
+    }, 1000);
   }
   else {
     getOutcome();
   }
+  document.getElementById("hit-button").style.display = "none";
+  document.getElementById("pass-button").style.display = "none";
 }
 
 function getOutcome() {
   if (calculate(dealerHand) < calculate(playerHand)) {
-    setTimeout(() => { alert("YOU WIN!"); }, 1000);
+    setTimeout(() => { 
+      alert("YOU WIN!"); 
+      document.getElementById("next-hand-button").style.display = "block";
+      dollars = dollars + parseInt(bet.value);
+      updateBank();
+      document.getElementById("bet").style.display = "block";
+      document.getElementById("bet-label").style.display = "flex";
+    }, 1000);
   }
   else if (calculate(dealerHand) > calculate(playerHand)) {
-    setTimeout(() => { alert("YOU LOSE"); }, 1000);
+    setTimeout(() => { 
+      alert("YOU LOSE"); 
+      document.getElementById("next-hand-button").style.display = "block";
+      dollars = dollars - bet.value;
+      updateBank();
+      document.getElementById("bet").style.display = "block";
+      document.getElementById("bet-label").style.display = "flex";
+    }, 1000);
   }
   else {
-    setTimeout(() => { alert("PUSH"); }, 1000);
+    setTimeout(() => { 
+      alert("PUSH"); 
+      document.getElementById("next-hand-button").style.display = "block";
+      document.getElementById("bet").style.display = "block";
+      document.getElementById("bet-label").style.display = "flex";
+    }, 1000);
+  }
+}
+
+function checkBet() {
+  if (document.querySelector('#bet').value > dollars) {
+    alert("you don't have enough");
+    proceed = false;
+  }
+  else {
+    proceed = true;
   }
 }
 
 function clearBoard() {
+  if (!proceed) {
+    return;
+  }
   PLAYER.innerHTML = '';
   DEALER.innerHTML = '';
   count = 0;
 }
 
-function toggle_buttons(containerId) {
-  const hit_stand = document.querySelector('.button-container');
-  const deal_next = document.querySelector('.deal-container');
-  hit_stand.classList.toggle("hidden");
-  deal_next.classList.toggle("hidden");
-  if (containerId === 'pass-button') {
-    hit_stand.classList.add("hidden");
-    deal_next.classList.remove("hidden");
-  }
-  else if (containerId === 'next-hand-button') {
-    hit_stand.classList.remove("hidden");
-    deal_next.classList.add("hidden");
-  }
+function updateBank() {
+  document.getElementById("amount").innerHTML = 'You have: $' + dollars;
 }
 
 createDeck();
 shuffle();
-dealCards();
+updateBank();
 
 HIT_BUTTON.addEventListener('click', hitPlayer);
 PASS_BUTTON.addEventListener('click', hitDealer);
