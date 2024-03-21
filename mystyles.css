@@ -5,6 +5,7 @@ html {
 .wrapper{
   margin: auto;
   width: fit-content;
+  text-align: center;
 }
 button {
   height: 50px;
@@ -12,9 +13,6 @@ button {
   padding:10px 30px 10px;
   font-size: 110%;
   border-radius: 10px
-}
-.wrapper {
-  text-align: center;
 }
 .card {
   background-color: white;
@@ -25,6 +23,9 @@ button {
 .cards {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 .back {
   height: 182px;
@@ -52,3 +53,10 @@ button {
 } */
 
 /* media screen */
+
+@media screen and (max-width: 768px) {
+  .card, .back {
+    width: 100px;
+    height: auto;
+  }
+}

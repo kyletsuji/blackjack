@@ -155,6 +155,7 @@ function getOutcome() {
 function clearBoard() {
   PLAYER.innerHTML = '';
   DEALER.innerHTML = '';
+  count = 0;
 }
 
 function toggle_buttons(containerId) {
