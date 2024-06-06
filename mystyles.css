@@ -1,27 +1,42 @@
+/* background */
 html {
   text-align: center;
-  background-color: forestgreen;
 }
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(las_vegas.jpeg);
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1.3rem;
+  color:black;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: white;
+  background-repeat:inherit;
+  letter-spacing: .7rem;
+  text-transform: uppercase;
+}
+
+/* headers */
 #dealer-header, #player-header, #hit-button, #pass-button{
   display: none;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 .wrapper{
   margin: auto;
   width: fit-content;
   text-align: center;
 }
-button {
-  height: 50px;
-  width: fit-content;
-  padding:10px 30px 10px;
-  font-size: 110%;
-  border-radius: 10px
-}
 .card {
   background-color: white;
   border-radius: 4%;
   height: 100%;
   width: 100px;
+  box-shadow: 5px 5px 3px 3px;
+  border: 2px outset;
 }
 .cards {
   display: flex;
@@ -37,36 +52,84 @@ button {
 .hidden {
   display: none;
 }
-label {
+/* label {
   align-items: center;
   display: flex;
-}
+} */
+
+/* form */
 .bank {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 1rem 1rem 0rem 1rem;
+  gap: .8rem;
+}
+#bank-form{
+  font-size: 2rem;
+  display: flex;
+  color: black;
   gap: 1rem;
+  margin: 1rem;
+}
+#amount {
+  font-size: 2rem;
+  margin: 1rem;
+}
+#bet {
+  color: black;
+  -webkit-text-stroke-color: transparent;
+  text-align: center;
+  font-size: 2rem;
+  border-radius: 1rem;
 }
 
+
 /* buttons */
+button {
+  /* height: 50%; */
+  /* width: fit-content; */
+  padding:15px 15px 15px 15px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  letter-spacing: .3rem;
+  text-transform: uppercase;
+  border: .3rem inset white;
+  font-weight: 700;
+}
 #button-container {
   justify-content: center;
   display: flex;
   align-items: center;
   gap: 3rem;
+  font-size: 1.5rem;
+  -webkit-text-stroke-color: transparent;
 }
 #deal-container {
   align-items: center;
   display: flex;
   justify-content: center;
-}
-#bet {
-  border-radius: 20px;
+  -webkit-text-stroke-color: transparent;
 }
 
-
-#amount, #bet-label{
-  font-size: 1.2rem;
+/* #next-hand-button {
+  font-variant:small-caps;
+  text-transform: lowercase;
+  color: black;
+  -webkit-text-stroke-color: transparent;
+  letter-spacing: .1em;
+} */
+#next-hand-button:hover, #hit-button:hover {
+  color: white;
+  background-color: green;
+  border-color: green;
+}
+#pass-button:hover {
+  color: white;
+  background-color: red;
+  border-color: red;
+}
+button:hover {
+  cursor: pointer;
 }
 
 /* #player-header, #dealer-header {

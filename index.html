@@ -5,27 +5,26 @@
     <link rel="stylesheet" href="mystyles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
+  <body> 
     <div class="layout">
       <h2 id="dealer-header">Dealer hand</h2>
       <div class="wrapper">
         <div class="cards" id="dealer"></div> 
       </div>
-      <br>
       <h2 id="player-header">Player hand</h2>
       <div class="wrapper">
         <div class="cards" id="player"></div>
       </div>
       <div class="bank">
-        <label for="bet" id="bet-label">Place your bet</label>
-        <input type="number" id="bet" min="0" max="50" value="20" step="10"/>
+        <form action="#" id="bank-form"> 
+          <label for="bet" id="bet-label">Place your bet</label>
+          <input type="number" id="bet" min="0" max="50" step="25" placeholder="$"/>
+        </form>
         <p id="amount"></p>
       </div>
       <div id="button-container">
         <button id="hit-button">Hit</button>
         <button id="pass-button">Stand</button>
-      </div>
-      <div id="deal-container">
         <button id="next-hand-button" onclick="checkBet()">Deal</button>
       </div>
     </div>
